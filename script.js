@@ -11,7 +11,7 @@ const addTransactionBtn = document.querySelector('.add-transaction');
 const saveBtn = document.querySelector('.save');
 const cancelBtn = document.querySelector('.cancel');
 const deleteBtn = document.querySelector('.delete');
-const deleteAlltn = document.querySelector('.delete-all');
+const deleteAllBtn = document.querySelector('.delete-all');
 
 const lightBtn = document.querySelector('.light');
 const darkBtn = document.querySelector('.dark');
@@ -104,13 +104,21 @@ const deleteTransaction = (id) => {
 
 	moneyArr.splice(indexOfTransaction, 1);
 
-	transactionToDelete.classList.contains(income)
+	transactionToDelete.classList.contains('income')
 		? incomeSection.removeChild(transactionToDelete)
 		: expensesSection.removeChild(transactionToDelete);
 
 	countMoney(moneyArr);
 };
 
+const deleteAllTransactions = () => {
+	incomeSection.innerHTML = '<h3>Przychód:</h3>';
+	expensesSection.innerHTML = '<h3>Wydatki:</h3>';
+	availableMoney.textContent = '0zł';
+	moneyArr = [0];
+};
+
 addTransactionBtn.addEventListener('click', showPanel);
 cancelBtn.addEventListener('click', closePanel);
 saveBtn.addEventListener('click', checkForm);
+deleteAllBtn.addEventListener('click', deleteAllTransactions);

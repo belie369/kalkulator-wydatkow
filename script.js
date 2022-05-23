@@ -63,6 +63,7 @@ const createNewTransaction = () => {
 		: expensesSection.appendChild(newTransaction) && newTransaction.classList.add('expense');
 
 	moneyArr.push(parseFloat(amountInput.value));
+	countMoney(moneyArr);
 
 	ID++;
 
@@ -91,10 +92,10 @@ const checkCategory = (category) => {
 	}
 };
 
-/* <div class="transaction" id="1">
-<p class="transaction-name"><i class="fas fa-cart-arrow-down"></i> Zakupy</p>
-<p class="transaction-amount">-400zł <button class="delete"><i class="fas fa-times"></i></button></p>
-</div> */
+const countMoney = (money) => {
+	const newMoney = money.reduce((a, b) => a + b);
+	availableMoney.textContent = `${newMoney}zł`;
+};
 
 addTransactionBtn.addEventListener('click', showPanel);
 cancelBtn.addEventListener('click', closePanel);
